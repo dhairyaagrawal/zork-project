@@ -11,12 +11,12 @@
 #include <string>
 
 class Status {
+public:
 	Status();
 	virtual ~Status();
 
-	bool has; //0->no, 1->yes
+	std::string status;
 	std::string objName;
-	std::string owner;
 };
 
 #endif /* STATUS_HPP_ */

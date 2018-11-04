@@ -26,7 +26,7 @@ public:
 	std::string status;
 	bool type; //0->regular, 1->exit
 	std::string description;
-	std::list<Border*> borders;
+	std::list<Border> borders;
 	std::list<Container*> containers;
 	std::list<Item*> items;
 	std::list<Creature*> creatures;

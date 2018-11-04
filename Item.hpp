@@ -23,7 +23,7 @@ public:
 	std::string status;
 	std::string description;
 	std::string writing;
-	TurnOn power;
+	TurnOn turnon;
 	std::list<Trigger*> triggers;
 };
 

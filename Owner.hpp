@@ -11,12 +11,13 @@
 #include <string>
 
 class Owner {
+public:
 	Owner();
 	virtual ~Owner();
 
 	bool has; //0->no, 1->yes
 	std::string objName;
-	Container &owner;
+	std::string owner;
 };
 
 #endif /* OWNER_HPP_ */

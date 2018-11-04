@@ -17,7 +17,7 @@ public:
 	Attack();
 	virtual ~Attack();
 
-	Status statusCond; //more than one??
+	Status statusCond;
 	std::list<std::string> prints;
 	std::list<std::string> actions;
 };

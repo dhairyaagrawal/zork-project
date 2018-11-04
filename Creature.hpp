@@ -23,7 +23,7 @@ public:
 	std::string status;
 	std::string description;
 	std::list<std::string> weaknesses;
-	Attack attackOp;
+	Attack attack;
 	std::list<Trigger*> triggers;
 };
 

@@ -9,9 +9,6 @@
 #define BORDER_HPP_
 
 #include <string>
-#include "Base.hpp"
-#include "Room.hpp"
-
 
 class Border {
 public:
@@ -20,9 +17,7 @@ public:
 
 	std::string name;
 	std::string direction;
-	Room *ref;
+	//Room *ref;
 };
-
-
 
 #endif /* BORDER_HPP_ */

@@ -21,6 +21,4 @@ public:
 	std::list<std::string> actions;
 };
 
-
-
 #endif /* TURNON_HPP_ */

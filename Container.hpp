@@ -12,7 +12,6 @@
 #include "Item.hpp"
 #include "Trigger.hpp"
 #include <string>
-#include <set>
 #include <list>
 
 class Container : public Base {
@@ -23,9 +22,10 @@ public:
 	std::string name;
 	std::string status;
 	std::string description;
-	std::set<std::string> accept;  //if (accept.find(myinput) != accept.end())
+	std::list<std::string> accept;  //if (accept.find(myinput) != accept.end()) for sets
 	std::list<Item*> items;
 	std::list<Trigger*> triggers;
+	bool open; //0->closed, 1->open
 };
 
 #endif /* CONTAINER_HPP_ */
