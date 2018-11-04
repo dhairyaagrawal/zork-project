@@ -4,11 +4,12 @@ README.txt
 
 Assumed Specifications (because of incomplete details):
 	- Triggers can have multiple conditions but only one of each type (command, owner, status)
+	- Attack can only one have one condition which is of type status
 	- Commands have to matched completely for the trigger condition to pass because matching elements can lead
 	  to wrong commands matching
 	- Every item can only be created once; if you add an item to a container, it is moved
 	  from the original container to the new one
-	- 
+	- Running the executable would modify the input file by putting null terminators in the source text
 	
 object -> item
 owner -> container
