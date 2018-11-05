@@ -3,12 +3,13 @@
 // Author      : Dhairya
 // Version     :
 // Copyright   : Your copyright notice
-// Description : Hello World in C, Ansi-style
+// Description : Zork Project in C++, Ansi-style
 //============================================================================
 
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <sstream>
 #include <string>
 #include <iostream>
 #include <list>
@@ -355,6 +356,14 @@ bool execute_command(gameObject* game, std::string command) {
 		}
 		return false;
 	}
+	
+	std::list<std::string> newCommand;
+	std::istringstream iss (command);
+	for(std::string s = ""; iss >> s; ) {
+    	newCommand.push_back(s);
+	}
+
+	if(
 
 	return false;
 }
