@@ -13,11 +13,13 @@
 #include "Trigger.hpp"
 #include <string>
 #include <list>
+#include "iostream"
 
 class Container : public Base {
 public:
 	Container();
 	virtual ~Container();
+	void printItems();
 
 	std::string name;
 	std::string status;

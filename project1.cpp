@@ -288,6 +288,9 @@ bool execute_command(gameObject* game, std::string command) {
 		return true;
 	} else if(command == "force quit") {
 		return true;;
+	} else if(command == "Game Over") {
+		std::cout << "Victory!\n";
+		return true;
 	}
 
 	bool force = false;
@@ -349,7 +352,7 @@ bool execute_command(gameObject* game, std::string command) {
 		} else {
 			std::cout << "Inventory: " << game->inventory.items.front()->name;
 			std::list<Item*>::iterator it = game->inventory.items.begin();
-			for(++it; it != game->inventory.items.end(); ++it) {
+			for(++it; it != game->inventory.items.end(); ++it) { //?????
 				std::cout << ", " << (*it)->name;
 			}
 			std::cout << std::endl;
@@ -363,7 +366,69 @@ bool execute_command(gameObject* game, std::string command) {
     	newCommand.push_back(s);
 	}
 
-	if(
+	if(newCommand.front() == "open") {
+		newCommand.pop_front();
+		Container* target = searchContainer(&(game->currRoom->containers), newCommand.front());
+		if(!target) {
+			std::cout << newCommand.front() << " item not present\n";
+		} else if(target->accept.size() == 0) {
+			target->open = true;
+			target->printItems();
+		} else {
+			std::cout << "can't open " << target->name << std::endl;
+		}
+		return false;
+	} else if(newCommand.front() == "take") {
+		newCommand.pop_front();
+		Item* target = searchItem(&(game->currRoom->items), newCommand.front());
+		if(target) {
+			game->inventory.items.push_back(target);
+			game->currRoom->items.remove(target);
+			std::cout << "Item " << target->name << " added to inventory\n";
+		} else {
+			for(std::list<Container*>::iterator it = game->currRoom->containers.begin(); it != game->currRoom->containers.end(); ++it) {
+				target = searchItem(&((*it)->items), newCommand.front());
+				if(target) {
+					if((*it)->open) {
+						game->inventory.items.push_back(target);
+						(*it)->items.remove(target);
+						std::cout << "Item " << target->name << " added to inventory\n";
+					} else {
+						std::cout << (*it)->name << " not open\n";
+					}
+					break;
+				}
+			}
+			if(!target) {
+				std::cout << "item not found\n";
+			}
+		}
+		return false;
+	} else if(newCommand.front() == "read") {
+		newCommand.pop_front();
+		Item* target = searchItem(&(game->inventory.items), newCommand.front());
+		if(target) {
+			if(target->writing == "") {
+				std::cout << "Nothing written\n";
+			} else {
+				std::cout << target->writing << std::endl;
+			}
+		} else {
+			std::cout << "you don't have " << newCommand.front() << " in inventory\n";
+		}
+		return false;
+	} else if(newCommand.front() == "drop") {
+		newCommand.pop_front();
+		Item* target = searchItem(&(game->inventory.items), newCommand.front());
+		if(target) {
+			game->currRoom->items.push_back(target);
+			game->inventory.items.remove(target);
+			std::cout << target->name << " dropped\n";
+		} else {
+			std::cout << "you don't have " << newCommand.front() << " in inventory\n";
+		}
+		return false;
+	}
 
 	return false;
 }

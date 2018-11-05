@@ -16,3 +16,14 @@ Container::~Container() {
 		delete (*it);
 	}
 }
+
+void Container::printItems() {
+	if(items.begin() == items.end()) {std::cout << name << " is empty\n"; return;}
+	std::cout << name << " contains " << items.front()->name;
+
+	std::list<Item*>::iterator it = items.begin();
+	for(++it; it != items.end(); ++it) {
+		std::cout << ", " << (*it)->name;
+	}
+	std::cout << std::endl;
+}
