@@ -20,6 +20,13 @@
 #include "gameObject.hpp"
 
 gameObject* createGame (rapidxml::xml_node<>*);
+void rungame(gameObject*);
+bool execute_command(gameObject*, std::string);
+
+Room* searchRoom(std::list<Room*>*, std::string);
+Item* searchItem(std::list<Item*>*, std::string);
+Container* searchContainer(std::list<Container*>*, std::string);
+Creature* searchCreature(std::list<Creature*>*, std::string);
 
 int main(int argc, char* argv[]) {
 	//READ XML FILE INTO A DOM TREE ROOT
@@ -35,6 +42,7 @@ int main(int argc, char* argv[]) {
 	//how to parse DOM
 	gameObject* game = createGame(root);
 
+	rungame(game);
 	return EXIT_SUCCESS;
 }
 
@@ -247,5 +255,142 @@ gameObject* createGame(rapidxml::xml_node<> *map) {
 		}
 		game->rooms.push_back(newRoom);
 	}
+
+	for(std::list<Room*>::iterator it = game->rooms.begin(); it != game->rooms.end(); ++it) {
+		if((*it)->name == "Entrance") {
+			game->currRoom = (*it);
+			break;
+		}
+	}
+
 	return game;
+}
+
+void rungame(gameObject* game) {
+	std::string line;
+	std::cout << game->currRoom->description << "\n";
+	while(std::cin) {
+		std::getline(std::cin, line);
+		//check triggers override
+		//if not execute command
+		if(execute_command(game, line)) {
+			break;
+		}
+		//check activated triggers, execute actions and check additional triggers
+
+	}
+}
+
+bool execute_command(gameObject* game, std::string command) {
+	if(command == "open exit" && game->currRoom->type) {
+		std::cout << "Game Over\n";
+		return true;
+	} else if(command == "force quit") {
+		return true;;
+	}
+
+	bool force = false;
+	if(command == "n") {
+		for(std::list<Border>::iterator it = game->currRoom->borders.begin(); it != game->currRoom->borders.end(); ++it) {
+			if((*it).direction == "north") {
+				game->currRoom = searchRoom(&(game->rooms), (*it).name);
+				std::cout << game->currRoom->description << std::endl;
+				force = true;
+				break;
+			}
+		}
+		if(force == false) {
+			std::cout << "Can't go that way\n";
+		}
+		return false;
+	} else if(command == "s") {
+		for(std::list<Border>::iterator it = game->currRoom->borders.begin(); it != game->currRoom->borders.end(); ++it) {
+			if((*it).direction == "south") {
+				game->currRoom = searchRoom(&(game->rooms), (*it).name);
+				std::cout << game->currRoom->description << std::endl;
+				force = true;
+				break;
+			}
+		}
+		if(force == false) {
+			std::cout << "Can't go that way\n";
+		}
+		return false;
+	} else if(command == "e") {
+		for(std::list<Border>::iterator it = game->currRoom->borders.begin(); it != game->currRoom->borders.end(); ++it) {
+			if((*it).direction == "east") {
+				game->currRoom = searchRoom(&(game->rooms), (*it).name);
+				std::cout << game->currRoom->description << std::endl;
+				force = true;
+				break;
+			}
+		}
+		if(force == false) {
+			std::cout << "Can't go that way\n";
+		}
+		return false;
+	} else if(command  == "w") {
+		for(std::list<Border>::iterator it = game->currRoom->borders.begin(); it != game->currRoom->borders.end(); ++it) {
+			if((*it).direction == "west") {
+				game->currRoom = searchRoom(&(game->rooms), (*it).name);
+				std::cout << game->currRoom->description << std::endl;
+				force = true;
+				break;
+			}
+		}
+		if(force == false) {
+			std::cout << "Can't go that way\n";
+		}
+		return false;
+	} else if(command == "i") {
+		if(game->inventory.items.size() == 0) {
+			std::cout << "Inventory: empty\n";
+		} else {
+			std::cout << "Inventory: " << game->inventory.items.front()->name;
+			std::list<Item*>::iterator it = game->inventory.items.begin();
+			for(++it; it != game->inventory.items.end(); ++it) {
+				std::cout << ", " << (*it)->name;
+			}
+			std::cout << std::endl;
+		}
+		return false;
+	}
+
+	return false;
+}
+
+Room* searchRoom(std::list<Room*>* rooms, std::string roomName) {
+	for(std::list<Room*>::iterator it = (*rooms).begin(); it != (*rooms).end(); ++it) {
+		if((*it)->name == roomName) {
+			return (*it);
+		}
+	}
+	return NULL;
+}
+
+Item* searchItem(std::list<Item*>* items, std::string itemName) {
+	for(std::list<Item*>::iterator it = (*items).begin(); it != (*items).end(); ++it) {
+		if((*it)->name == itemName) {
+			return (*it);
+		}
+	}
+	return NULL;
+}
+
+Container* searchContainer(std::list<Container*>* containers, std::string containerName) {
+	for(std::list<Container*>::iterator it = (*containers).begin(); it != (*containers).end(); ++it) {
+		if((*it)->name == containerName) {
+			return (*it);
+		}
+	}
+	return NULL;
+}
+
+Creature* searchCreature(std::list<Creature*>* creatures, std::string creatureName) {
+	for(std::list<Creature*>::iterator it = (*creatures).begin(); it != (*creatures).end(); ++it) {
+		if((*it)->name == creatureName) {
+			return (*it);
+		}
+	}
+	return NULL;
 }

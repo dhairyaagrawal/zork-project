@@ -19,6 +19,7 @@ public:
 	~gameObject();
 
 	Container inventory;
+	Room *currRoom;
 	std::list<Item*> freeItems;
 	std::list<Creature*> freeCreatures;
 	std::list<Container*> freeContainers;

@@ -24,7 +24,6 @@ public:
 	std::string description;
 	std::string writing;
 	TurnOn turnon;
-	std::list<Trigger*> triggers;
 };
 
 #endif /* ITEM_HPP_ */

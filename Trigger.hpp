@@ -8,13 +8,12 @@
 #ifndef TRIGGER_HPP_
 #define TRIGGER_HPP_
 
-#include "Base.hpp"
 #include "Owner.hpp"
 #include "Status.hpp"
 #include <string>
 #include <list>
 
-class Trigger : public Base {
+class Trigger {
 public:
 	Trigger();
 	~Trigger();

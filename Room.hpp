@@ -30,7 +30,6 @@ public:
 	std::list<Container*> containers;
 	std::list<Item*> items;
 	std::list<Creature*> creatures;
-	std::list<Trigger*> triggers;
 };
 
 

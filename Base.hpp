@@ -9,6 +9,7 @@
 #define BASE_HPP_
 
 #include <string>
+#include "Trigger.hpp"
 
 class Base {
 public:
@@ -16,6 +17,7 @@ public:
 	virtual ~Base();
 
 	std::string derivedType;
+	std::list<Trigger*> triggers;
 };
 
 #endif /* BASE_HPP_ */

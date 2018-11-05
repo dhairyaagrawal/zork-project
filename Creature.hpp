@@ -24,7 +24,6 @@ public:
 	std::string description;
 	std::list<std::string> weaknesses;
 	Attack attack;
-	std::list<Trigger*> triggers;
 };
 
 #endif /* CREATURE_HPP_ */
