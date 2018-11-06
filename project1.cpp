@@ -645,7 +645,7 @@ bool execute_command(gameObject* game, std::string command) {
 				std::cout << target->turnon.print << std::endl;
 				bool val;
 				val = execute_command(game, target->turnon.action);
-				//std::cout << target->status << "\n";
+				std::cout << "You activate the " << target->name << "\n";
 				return val;
 			} else {
 				std::cout << "Item can't be turned on\n";
