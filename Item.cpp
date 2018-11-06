@@ -7,7 +7,7 @@
 
 #include "Item.hpp"
 
-Item::Item() {}
+Item::Item() {derivedType = "Item";}
 Item::~Item() {
 	for(std::list<Trigger*>::iterator it = triggers.begin(); it != triggers.end(); ++it) {
 		delete (*it);

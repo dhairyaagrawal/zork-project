@@ -9,7 +9,6 @@
 #define TURNON_HPP_
 
 #include <string>
-#include <list>
 
 class TurnOn {
 public:
@@ -17,8 +16,8 @@ public:
 	virtual ~TurnOn();
 
 	bool exists; //0->doesn't exist, 1->exists
-	std::list<std::string> prints;
-	std::list<std::string> actions;
+	std::string print;
+	std::string action;
 };
 
 #endif /* TURNON_HPP_ */

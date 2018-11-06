@@ -11,7 +11,6 @@
 #include "Base.hpp"
 #include "Item.hpp"
 #include "Trigger.hpp"
-#include <string>
 #include <list>
 #include "iostream"
 
@@ -21,9 +20,6 @@ public:
 	virtual ~Container();
 	void printItems();
 
-	std::string name;
-	std::string status;
-	std::string description;
 	std::list<std::string> accept;  //if (accept.find(myinput) != accept.end()) for sets
 	std::list<Item*> items;
 	bool open; //0->closed, 1->open

@@ -7,5 +7,5 @@
 
 #include "Creature.hpp"
 
-Creature::Creature() {}
+Creature::Creature() {derivedType = "Creature";}
 Creature::~Creature() {}

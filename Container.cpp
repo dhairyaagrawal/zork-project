@@ -7,7 +7,7 @@
 
 #include "Container.hpp"
 
-Container::Container() {open = false;}
+Container::Container() {open = false; derivedType = "Container";}
 Container::~Container() {
 	for(std::list<Trigger*>::iterator it = triggers.begin(); it != triggers.end(); ++it) {
 		delete (*it);

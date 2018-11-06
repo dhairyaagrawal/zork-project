@@ -11,7 +11,6 @@
 #include "Base.hpp"
 #include "Attack.hpp"
 #include "Trigger.hpp"
-#include <string>
 #include <list>
 
 class Creature : public Base {
@@ -19,9 +18,6 @@ public:
 	Creature();
 	virtual ~Creature();
 
-	std::string name;
-	std::string status;
-	std::string description;
 	std::list<std::string> weaknesses;
 	Attack attack;
 };

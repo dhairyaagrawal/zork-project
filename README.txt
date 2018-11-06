@@ -1,5 +1,5 @@
 README.txt
- Created on: Nov 2, 2018
+ Created on: Oct 27, 2018
      Author: Dhairya
 
 Assumed Specifications (because of incomplete details):
@@ -14,9 +14,5 @@ Assumed Specifications (because of incomplete details):
 	- Triggers can only be of type once or permanent
 	- Triggers are by default of type once unless specified to permanent
 	- Room are by default of type regular unless specified to be exit
+	- Two different objects cannot have same name
 	
-object -> item
-owner -> container
-inventory container: name -> 'inventory' and list<item>
-free_items list -> items not assigned anywhere
-free_creatures list -> creatures not assigned anywhere

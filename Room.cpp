@@ -7,7 +7,7 @@
 
 #include "Room.hpp"
 
-Room::Room() {type = false;}
+Room::Room() {type = false; derivedType = "Room";}
 Room::~Room() {
 	for(std::list<Trigger*>::iterator it = triggers.begin(); it != triggers.end(); ++it) {
 		delete (*it);

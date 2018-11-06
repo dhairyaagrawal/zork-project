@@ -10,12 +10,16 @@
 
 #include <string>
 #include "Trigger.hpp"
+#include <list>
 
 class Base {
 public:
 	Base();
 	virtual ~Base();
 
+	std::string name;
+	std::string status;
+	std::string description;
 	std::string derivedType;
 	std::list<Trigger*> triggers;
 };

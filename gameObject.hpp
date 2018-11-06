@@ -24,6 +24,7 @@ public:
 	std::list<Creature*> freeCreatures;
 	std::list<Container*> freeContainers;
 	std::list<Room*> rooms;
+	std::list<Base*> allObjects;
 };
 
 #endif /* GAMEOBJECT_HPP_ */
