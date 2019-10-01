@@ -2,6 +2,8 @@ README.txt
  Created on: Oct 27, 2018
      Author: Dhairya
 
+Zork game created in C++. Takes map of the game as an xml file and runs comman line input as commands to play the game.
+
 Assumed Specifications (because of incomplete details):
 	- Triggers can have multiple conditions but only one of each type (command, owner, status)
 	- Attack can only one have one condition of type status and none of type owner
